@@ -253,10 +253,6 @@ enabled = true
 shortcut = "BackSpace"
 variant = "destructive"
 
-[templates.rofi]
-input_path = "~/.config/noctalia/templates/rofi.rasi"
-output_path = "~/.config/rofi/themes/noctalia.rasi"
-
 [theme]
 builtin = "Gruvbox"
 community_palette = "Oxocarbon"
@@ -267,7 +263,17 @@ wallpaper_scheme = "m3-content"
 
 [theme.templates]
 builtin_ids = ["btop", "foot", "gtk3", "gtk4", "hyprland", "qt"]
-community_ids = ["vscode", "steam", "rofi", "zathura", "yazi"]
+community_ids = ["vscode", "steam","zathura", "yazi"]
+
+[theme.templates.user.rofi]
+input_path = "~/.config/noctalia/templates/rofi.rasi"
+output_path = "~/.config/rofi/themes/noctalia.rasi"
+
+[theme.templates.user.nvim]
+input_path = "~/.config/noctalia/templates/nvim.lua"
+output_path = "~/.config/nvim/lua/themes/matugen.lua"
+post_hook = "pkill -SIGUSR1 nvim"
+
 
 [wallpaper]
 directory = "/home/tiz/.local/share/bg"

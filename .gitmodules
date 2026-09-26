@@ -1,3 +1,6 @@
 [submodule ".config/nvim"]
 	path = .config/nvim
 	url = https://github.com/sudo-Tiz/nvim.git
+[submodule "/home/tiz/.config/opencode"]
+	path = /home/tiz/.config/opencode
+	url = https://github.com/sudo-Tiz/opencode

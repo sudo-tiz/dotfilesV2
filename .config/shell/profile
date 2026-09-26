@@ -38,6 +38,7 @@ export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_HOME="$XDG_CONFIG_HOME/android"
 export ANDROID_SDK_HOME="$XDG_DATA_HOME/Android_sdk"
 export GRADLE_USER_HOME="$XDG_CONFIG_HOME/gradle"
+export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 export PATH="$PATH:$CARGO_HOME/bin"

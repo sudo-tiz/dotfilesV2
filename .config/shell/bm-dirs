@@ -4,8 +4,11 @@ dt  ${XDG_DATA_HOME:-$HOME/.local/share}
 B   $HOME/.local/bin
 src $HOME/.local/src
 m   /mnt
-N   ${XDG_CONFIG_HOME:-$HOME/.config}/nvim 
+V   ${XDG_CONFIG_HOME:-$HOME/.config}/nvim 
 H   ${XDG_CONFIG_HOME:-$HOME/.config}/hypr
+T   ${XDG_CONFIG_HOME:-$HOME/.config}/tmux
+SH  ${XDG_CONFIG_HOME:-$HOME/.config}/shell
+N   ${XDG_CONFIG_HOME:-$HOME/.config}/noctalia
 D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 d   ${XDG_DOCUMENTS_DIR:-$HOME/documents}
 L   $HOME/local

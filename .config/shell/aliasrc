@@ -80,17 +80,69 @@ alias \
   egrep="grep -E" \
   fd="fd -Hi" \
   qute-clear="rm -rf ~/.local/share/qutebrowser/webengine; rm -rf ~/.cache/qutebrowser/webengine/" \
-  mdtemp="cd $(mktemp -d)"
+  mdtemp="cd $(mktemp -d)" \
+  wl="wl-copy"
 old() { mv -- "$1" "$1.old"; }
 new(){ mv -- "${1}.old" "$1"; }
 bak() { cp -a -- "$1" "$1.bak"; }
 baktar() { tar -zcvf "${1}_$(date '+%Y-%m-%d_%H-%M').tar.gz" -- "$1"; }
 
+# TMUX
+[ -x "$(command -v tmux)" ] && alias \
+  t="tmux" \
+  ta="tmux attach-session" \
+  tnew="tmux new-session" \
+  tls="tmux list-sessions" \
+  tk="tmux kill-session" \
+
 # DOCKER
 [ -x "$(command -v docker)" ] && alias \
-  doc='sudo /bin/docker' \
-  doco='sudo /bin/docker compose' \
-  rmdoc='sudo /bin/docker rm -f $(/bin/docker ps -a -q)'
+  d="docker" \
+  dps="docker ps" \
+  dpsa="docker ps -a" \
+  di="docker images" \
+  dip="docker image pull" \
+  drun="docker run" \
+  dex="docker exec -it" \
+  dl="docker logs" \
+  dlf="docker logs -f" \
+  dst="docker stop" \
+  drm="docker rm" \
+  drmi="docker rmi" \
+  drestart="docker restart" \
+  dinspect="docker inspect" \
+  dtop="docker stats" \
+  dnet="docker network ls" \
+  dvol="docker volume ls" \
+  dprune="docker system prune"
+
+# DOCKER COMPOSE
+alias \
+  dc="docker compose" \
+  dcup="docker compose up" \
+  dcupd="docker compose up -d" \
+  dcdown="docker compose down" \
+  dcps="docker compose ps" \
+  dcl="docker compose logs" \
+  dclf="docker compose logs -f" \
+  dce="docker compose exec" \
+  dcrestart="docker compose restart" \
+  dcbuild="docker compose build" \
+  dcpull="docker compose pull"
+
+# KUBECTL
+[ -x "$(command -v kubectl)" ] && alias \
+  k="kubectl" \
+  ka="kubectl apply -f" \
+  kg="kubectl get" \
+  kd="kubectl describe" \
+  kdel="kubectl delete" \
+  kl="kubectl logs" \
+  kgpo="kubectl get pod" \
+  kgd="kubectl get deployments" \
+  kl="kubectl logs -f" \
+  ke="kubectl exec -it" \
+  kcns='kubectl config set-context --current --namespace' \
 
 # GIT
 [ -x "$(command -v git)" ] && alias \
@@ -112,16 +164,16 @@ baktar() { tar -zcvf "${1}_$(date '+%Y-%m-%d_%H-%M').tar.gz" -- "$1"; }
   gr='git restore' \
   grs='git restore --staged' \
   greset1='git reset --hard HEAD~1' \
-  gst='git status' \
-  gstl='git status|less' \
-  gl='git log' \
+  gst='git -p status' \
+  gl='git log --oneline --graph -20' \
+  gll='git log ' \
   gb='git branch' \
   gch="git checkout" \
   gchb="git checkout -b" \
   gsiu="git submodule init && git submodule update" \
   gsur="git submodule update --remote" \
-  gls='l --group-directories-first --color=auto -d $(git ls-tree $(git branch | grep \* | cut -d " " -f2) --name-only)' \
-  gll='l --group-directories-first --color=auto -d $(git ls-tree -r $(git branch | grep \* | cut -d " " -f2) --name-only)' \
+  gls='ls --group-directories-first --color=auto -d $(git ls-tree $(git branch | grep \* | cut -d " " -f2) --name-only)' \
+  gtree='ls --group-directories-first --color=auto -d $(git ls-tree -r $(git branch | grep \* | cut -d " " -f2) --name-only)' \
   grao='git remote rm origin; git remote add origin'  &&
   gdi() { git diff --name-only --relative --diff-filter=d | xargs bat --diff; }
 
@@ -141,7 +193,6 @@ alias \
 opc() {
     local dir
     dir="$(pwd -P)" || return 1
-
     case "$dir" in
         "$HOME/local"|"$HOME/local"/*|"$HOME/space"|"$HOME/space"/*|/tmp|/tmp/*)
             command firejail \
@@ -158,6 +209,38 @@ opc() {
     esac
 }
 
+# Tmux nvim opencode IDE
+ide() {
+    local dir="${1:-.}"
+    local name
+    dir="$(cd "$dir" && pwd -P)" || return 1
+    name="${dir#$HOME/}"
+    name="${name//[^a-zA-Z0-9_-]/-}"
+    if tmux has-session -t "$name" 2>/dev/null; then
+        tmux attach -t "$name"
+        return
+    fi
+    tmux new-session -d \
+        -s "$name" \
+        -n main \
+        -c "$dir" \
+        "nvim '$dir'"
+    tmux split-window -h \
+        -t "$name:main" \
+        -c "$dir" \
+        "zsh -ic 'opc \"\$1\"' _ '$dir'"
+    tmux select-pane -L -t "$name:main"
+    tmux split-window -v \
+        -t "$name:main" \
+        -c "$dir" \
+        "zsh"
+    tmux resize-pane -y 2 \
+        -t "$name:main"
+    tmux select-pane -t "$name:main.0"
+    tmux attach -t "$name"
+}
+alias i="ide"
+
 # Micro to speaker
 [ -x "$(command -v pactl)" ] && alias \
   micloopback='pactl unload-module module-loopback >/dev/null 2>&1 | grep Failed && pactl load-module module-loopback latency_msec=1'
@@ -168,6 +251,11 @@ opc() {
 
 # Take a picture
 alias campic="ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpg"
+
+# qrencode any file and print it
+[ -x "$(command -v convert)" ] && qr(){
+  local o; o=$(mktemp) && qrencode -r "$1" -o "$o" -t UTF8 && cat "$o"; 
+}
 
 # PDF to JPG (need imagemagick)
 [ -x "$(command -v convert)" ] && pdftojpg() {
@@ -180,13 +268,19 @@ alias campic="ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpg"
 # Cheatsheet for linux commands
 ch() { curl "http://cheat.sh/$1"; }
 
-# RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR, ALTERNATIVE TO <C-R>
-hf() {
-  cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1")
-  # push the command into the history
-  print -S $cmd
-  eval $cmd
-}
+# FZF 
+if command -v fzf &>/dev/null; then
+  fcd() { cd "$(find . -type d -not -path '*/.*' | fzf)" && l; }
+  fv() { nvim "$(find . -type f -not -path '*/.*' | fzf)" }
+  #
+  # RUN THE COMMAND FROM HISTORY, USING FZF AS SELECTOR, ALTERNATIVE TO <C-R>
+  hf() {
+    cmd=$(history 0 | sort -nr | cut -c 8- | fzf -e --select-1 --no-sort --query "$1")
+    # push the command into the history
+    print -S $cmd
+    eval $cmd
+  }
+fi
 
 # list path to other zsh shell opened
 lssh() {

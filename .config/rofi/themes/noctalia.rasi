@@ -4,8 +4,8 @@
     foreground:     #fbf1c7;
     foreground-alt: #ebdbb2;
     border:         #b8bb26;
-    border-alt:     #786f6b;
-    selected:       #444507;
+    border-alt:     #76706c;
+    selected:       #40420b;
     selected-fg:    #f6f6d5;
     urgent:         #fb4934;
     transparent:    #00000000;
