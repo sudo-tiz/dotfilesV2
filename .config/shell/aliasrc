@@ -149,6 +149,7 @@ alias \
   g="git" \
   gd="git diff" \
   gds="git diff --staged" \
+  gdc="git diff --cached" \
   gcl='git clone' \
   gull='git pull' \
   gullp='git stash && git pull && git stash pop' \
