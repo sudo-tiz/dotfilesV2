@@ -220,14 +220,13 @@ hl.bind("SUPER + U", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher /emo"), { des
 hl.bind("SUPER + O", hl.dsp.exec_cmd("signal-desktop"), { description = "Open Signal" })
 
 -- 2. Shell / UI Controls
-hl.bind("SUPER + N", hl.dsp.exec_cmd("nm-connection-editor"), { description = "Open network connection editor" })
-hl.bind("SUPER + CONTROL + N", hl.dsp.exec_cmd(ipc .. "panel-toggle network"), { description = "Toggle launcher" })
-hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd(term .. " nmtui"), { description = "Open network manager TUI" })
-hl.bind("SUPER + B", hl.dsp.exec_cmd(ipc .. "panel-toggle bluetooth"), { description = "Toggle bluetooth panel" })
+hl.bind("SUPER + N", hl.dsp.exec_cmd(term .. " nmtui"), { description = "Open network manager TUI" })
+hl.bind("SUPER + SHIFT + N", hl.dsp.exec_cmd("nm-connection-editor"), { description = "Open network connection editor" })
+hl.bind("SUPER + B", hl.dsp.exec_cmd(term .. " bluetui"), { description = "Open bluetooth TUI" })
 hl.bind("SUPER + SHIFT + B", hl.dsp.exec_cmd("blueman-manager"), { description = "Open bluetooth manager" })
-hl.bind( "SUPER + C", hl.dsp.exec_cmd(ipc .. "panel-toggle yuuto/calculator:panel"), { description = "Toggle calculator" })
+hl.bind("SUPER + C", hl.dsp.exec_cmd(ipc .. "panel-toggle yuuto/calculator:panel"), { description = "Toggle calculator" })
 hl.bind("SUPER + comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"), { description = "Toggle settings" })
-hl.bind( "SUPER + A", hl.dsp.exec_cmd(ipc .. " panel-toggle blackbartblues/keymap:panel"), { description = "Toggle keybind cheatsheet" })
+hl.bind("SUPER + A", hl.dsp.exec_cmd(ipc .. " panel-toggle blackbartblues/keymap:panel"), { description = "Toggle keybind cheatsheet" })
 hl.bind("SUPER + V", hl.dsp.exec_cmd(ipc .. " panel-toggle clipboard"), { description = "Toggle clipboard history" })
 hl.bind("SUPER + SHIFT + V", hl.dsp.exec_cmd("dmenulink"), { description = "Open link picker" })
 hl.bind("SUPER + Backspace", hl.dsp.exec_cmd(ipc .. " panel-toggle session"), { description = "Toggle session menu" })
@@ -241,11 +240,11 @@ hl.bind("SUPER + Space", hl.dsp.window.float(), { description = "Toggle floating
 hl.bind("SUPER + SHIFT + Space", hl.dsp.window.pin(), { description = "Pin window" })
 hl.bind("SUPER + G", hl.dsp.exec_cmd("hyprfreeze -a"), { description = "Freeze window" })
 hl.bind("SUPER + asterisk", hl.dsp.exec_cmd("hyprctl reload"), { description = "Reload Hyprland config" })
-hl.bind( "SUPER + SHIFT + asterisk", hl.dsp.exec_cmd("pkill noctalia; sleep 1; noctalia"), { description = "Restart noctalia" })
+hl.bind("SUPER + SHIFT + asterisk", hl.dsp.exec_cmd("pkill noctalia; sleep 1; noctalia"), { description = "Restart noctalia" })
 hl.bind("ALT + Tab", hl.dsp.layout("togglesplit"), { description = "Toggle split layout" })
 
 -- 4. Special Workspace
-hl.bind( "SUPER + SHIFT + Tab", hl.dsp.window.move({ workspace = "special" }), { description = "Move window to special workspace" })
+hl.bind("SUPER + SHIFT + Tab", hl.dsp.window.move({ workspace = "special" }), { description = "Move window to special workspace" })
 hl.bind("SUPER + Tab", hl.dsp.workspace.toggle_special(), { description = "Toggle special workspace" })
 
 -- 5. Move Focus
