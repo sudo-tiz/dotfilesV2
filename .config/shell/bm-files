@@ -12,4 +12,5 @@ cfp	${XDG_CONFIG_HOME:-$HOME/.config}/shell/profile		# profile file for login se
 cft	${XDG_CONFIG_HOME:-$HOME/.config}/tmux/tmux.conf # Tmux config
 cfh ${XDG_CONFIG_HOME:-$HOME/.config}/hypr/hyprland.lua		# Hyprland config
 cfn ${XDG_CONFIG_HOME:-$HOME/.config}/noctalia/noctalia-config.toml # Noctalia (status bar) config
+cfo ${XDG_CONFIG_HOME:-$HOME/.config}/opencode/opencode.jsonc		# Opencode config
 

@@ -105,6 +105,8 @@ hl.config({
 	-- └──────────────────────────────────────────────────────────────────────┘
 
 	misc = {
+    enable_swallow = true,
+    swallow_regex = "^(foot|footclient)$",
 		disable_hyprland_logo = true,
 		disable_splash_rendering = true,
 		vrr = 0,
@@ -115,7 +117,7 @@ hl.config({
 	},
 
 	-- ┌──────────────────────────────────────────────────────────────────────┐
-	-- │                          MISC                                        │
+	-- │                          GESTURE                                     │
 	-- └──────────────────────────────────────────────────────────────────────┘
 
 	gestures = {
