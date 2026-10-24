@@ -490,5 +490,8 @@ end)
 -- hl.bind("XF86Eject", ...)
 -- hl.bind("Menu", ...)
 
+
+
+
 -- For Noctalia Color templates
 require("noctalia").apply_theme()

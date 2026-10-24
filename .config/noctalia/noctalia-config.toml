@@ -45,6 +45,9 @@ warning_threshold = 20
 [brightness]
 enable_ddcutil = true
 
+[calendar]
+enabled = true
+
 [calendar.account.france]
 name = "jours fériés"
 server_url = "https://etalab.github.io/jours-feries-france-data/ics/jours_feries_metropole.ics"
@@ -254,7 +257,7 @@ shortcut = "BackSpace"
 variant = "destructive"
 
 [theme]
-builtin = "Gruvbox"
+builtin = "Tokyo-Night"
 community_palette = "Oxocarbon"
 mode = "dark"
 pure_black_dark = false
@@ -263,7 +266,12 @@ wallpaper_scheme = "m3-content"
 
 [theme.templates]
 builtin_ids = ["btop", "foot", "gtk3", "gtk4", "hyprland", "qt"]
-community_ids = ["vscode", "steam","zathura", "yazi"]
+    community_ids = [ "brave", "libreoffice", "vscode", "steam", "fastfetch", "zathura", "bat", "fzf", "tmux", "yazi" ]
+
+[theme.templates.user.terminal-sequences]
+input_path = '~/.config/noctalia/templates/terminal-sequences'
+output_path = '~/.cache/terminal-sequences'
+post_hook = 'tee /dev/pts/[0-9]* < ~/.cache/terminal-sequences'
 
 [theme.templates.user.rofi]
 input_path = "~/.config/noctalia/templates/rofi.rasi"

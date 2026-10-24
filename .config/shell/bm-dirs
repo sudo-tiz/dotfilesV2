@@ -13,5 +13,5 @@ D   ${XDG_DOWNLOAD_DIR:-$HOME/Downloads}
 d   ${XDG_DOCUMENTS_DIR:-$HOME/documents}
 L   $HOME/local
 S   $HOME/space
-M   $HOME/local/mash-playbook
-R   $HOME/local/REPO/github
+M   $HOME/local/server/mash-playbook
+R   $HOME/local/repo/github

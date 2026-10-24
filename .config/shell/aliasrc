@@ -100,6 +100,7 @@ baktar() { tar -zcvf "${1}_$(date '+%Y-%m-%d_%H-%M').tar.gz" -- "$1"; }
   tnew="tmux new-session" \
   tls="tmux list-sessions" \
   tk="tmux kill-session" \
+  tka="tmux kill-server" \
 
 # DOCKER
 [ -x "$(command -v docker)" ] && alias \
