@@ -1,0 +1,10 @@
+#!/bin/sh
+# Hibernate when a battery is discharging at or below $THRESHOLD percent.
+
+THRESHOLD=5
+
+for battery in /sys/class/power_supply/BAT*; do
+	[ -r "$battery/status" ] || continue
+	[ "$(cat "$battery/status")" = "Discharging" ] || continue
+	[ "$(cat "$battery/capacity")" -le "$THRESHOLD" ] && exec systemctl hibernate
+done
