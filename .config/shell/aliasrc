@@ -86,12 +86,12 @@ alias \
   fd="fd -Hi" \
   qute-clear="rm -rf ~/.local/share/qutebrowser/webengine; rm -rf ~/.cache/qutebrowser/webengine/" \
   mixxx="mixxx --settings-path ~/.config/mixxx" \
-  mdtemp="cd $(mktemp -d)" \
   wl="wl-copy" 
 old() { mv -- "$1" "$1.old"; }
 new(){ mv -- "${1}.old" "$1"; }
 bak() { cp -a -- "$1" "$1.bak"; }
 baktar() { tar -zcvf "${1}_$(date '+%Y-%m-%d_%H-%M').tar.gz" -- "$1"; }
+mdtemp() { cd -- "$(mktemp -d)"; }
 
 # TMUX
 [ -x "$(command -v tmux)" ] && alias \
@@ -147,7 +147,6 @@ alias \
   kl="kubectl logs" \
   kgpo="kubectl get pod" \
   kgd="kubectl get deployments" \
-  kl="kubectl logs -f" \
   ke="kubectl exec -it" \
   kcns='kubectl config set-context --current --namespace' \
 
@@ -163,11 +162,11 @@ alias \
   gush='git push' \
   gusho='git push -f origin' \
   gash="git stash" \
-  gashp="git stash" \
+  gashp="git stash pop" \
   gmer="git merge" \
   gmers="git merge stash" \
   gco='git commit -m' \
-  gcoa='git commit -amend --no-edit' \
+  gcoa='git commit --amend --no-edit' \
   ga='git add' \
   gr='git restore' \
   grs='git restore --staged' \
@@ -180,8 +179,7 @@ alias \
   gchb="git checkout -b" \
   gsiu="git submodule init && git submodule update" \
   gsur="git submodule update --remote" \
-  gls='ls --group-directories-first --color=auto -d $(git ls-tree $(git branch | grep \* | cut -d " " -f2) --name-only)' \
-  gtree='ls --group-directories-first --color=auto -d $(git ls-tree -r $(git branch | grep \* | cut -d " " -f2) --name-only)' \
+  gls='git ls-files' \
   grao='git remote rm origin; git remote add origin'  &&
   gdi() { git diff --name-only --relative --diff-filter=d | xargs bat --diff; }
 
@@ -204,12 +202,9 @@ if command -v yazi >/dev/null 2>&1; then
         tmp="$(mktemp)" || return 1
         trap 'rm -f -- "$tmp"' EXIT HUP INT QUIT TERM
         yazi --cwd-file "$tmp" "$@" || return
-        if [[ -f "$tmp" ]]; then
-            dir="$(<"$tmp")"
-            if [[ -d "$dir" && "$dir" != "$PWD" ]]; then
-                cd -- "$dir" && exec "${SHELL:-bash}"
-            fi
-        fi
+        [[ -f "$tmp" ]] || return
+        dir="$(<"$tmp")"
+        [[ -d "$dir" ]] && cd -- "$dir"
     )
     alias y='yazi-cd'
 fi
@@ -281,7 +276,7 @@ alias campic="ffmpeg -f v4l2 -i /dev/video0 -vframes 1 image.jpg"
   dmenu='wofi -d'
 
 # Cheatsheet for linux commands
-ch() { curl "http://cheat.sh/$1"; }
+ch() { curl "https://cheat.sh/$1"; }
 
 # FZF 
 if command -v fzf &>/dev/null; then
