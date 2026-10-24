@@ -44,6 +44,7 @@ warning_threshold = 20
 
 [brightness]
 enable_ddcutil = true
+sync_all_monitors = true
 
 [calendar]
 enabled = true

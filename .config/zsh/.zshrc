@@ -16,8 +16,6 @@ HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 setopt INC_APPEND_HISTORY
 setopt HIST_REDUCE_BLANKS
 setopt HIST_IGNORE_DUPS
-setopt HIST_VERIFY
-
 
 # Load aliases and shortcuts if existent.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/shortcutrc"
