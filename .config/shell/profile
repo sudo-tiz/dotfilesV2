@@ -52,7 +52,6 @@ export VSCODE_EXTENSIONS="$XDG_DATA_HOME/code-oss/extensions"
 
 # Other program settings:
 export MANPAGER="sh -c 'bat -l man -p'" # add coloration for manpages
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 # export MANROFFOPT="-c" # debug man pages blod and italic
 # export DICS="/usr/share/stardict/dic/"
 # export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"

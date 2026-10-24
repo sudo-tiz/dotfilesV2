@@ -1,7 +1,0 @@
-[ElisaFileIndexer]
-RootPath[$e]=$HOME/music
-
-[Views]
-SortOrderPreferences=Track==DescendingOrder
-SortRolePreferences=Track==FileModificationTime
-ViewStylePreferences=Album==ListStyle,FileName==ListStyle
