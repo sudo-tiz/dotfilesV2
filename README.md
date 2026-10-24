@@ -1,35 +1,38 @@
 # dotfilesV2
 
-My personal dotfiles for a Hyprland-based Arch Linux desktop.
+![Arch Linux](https://img.shields.io/badge/Arch_Linux-black?logo=archlinux&logoColor=white)
+![Hyprland](https://img.shields.io/badge/Hyprland-58E1FF?logo=hyprland&logoColor=black)
 
-![screenshot](.local/share/larbs/assets/screenshot.png) 
+Dotfiles for a Hyprland desktop on Arch Linux. Xorg/dwm: [dotfiles](https://github.com/sudo-Tiz/dotfiles).
 
-For Xorg/dwm dotfiles, see [github.com/sudo-Tiz/dotfiles](https://github.com/sudo-Tiz/dotfiles).
+![screenshot](.local/share/larbs/assets/screenshot.png)
 
-## Stack
+## Quick start
+
+Fresh Arch install: use [LARBRE](https://github.com/sudo-Tiz/LARBRE), it deploys these dotfiles for you.
+
+Manually:
+
+```sh
+git clone --recursive https://github.com/sudo-Tiz/dotfilesV2.git
+```
+
+Files go in `~/.config/` and `~/.local/`. Environment variables in `~/.zprofile` keep the home directory clean.
+
+## Desktop
 
 | Role | App |
 |------|-----|
 | Compositor | Hyprland |
 | Shell | Noctalia |
 | Terminal | Foot |
-| Editor | Neovim |
+| Editor | Neovim ([nvim](https://github.com/sudo-Tiz/nvim), submodule) |
 | File manager | Yazi |
 
-## Install
+Colors come from Noctalia: changing the theme there updates the terminal, GTK, Qt, etc. `Super + A` opens the keybind cheatsheet.
 
-Use **[LARBRE](https://github.com/sudo-Tiz/LARBRE)** for a full automated setup on a fresh Arch install.
+## Related
 
-```bash
-git clone --recursive https://github.com/sudo-Tiz/dotfilesV2.git
-```
-
-Files go in `~/.config/`. Environment variables in `~/.zprofile` keep the home directory clean.
-
-## Theming
-
-Colors are managed by **Noctalia**. Changing the theme in Noctalia settings automatically propagates to all apps (terminal, GTK, Qt, etc.)
-
-## Keybindings
-
-Press `Super + A` to open the keybind cheatsheet.
+- [LARBRE](https://github.com/sudo-Tiz/LARBRE) — Arch Linux auto-setup
+- [LARBUSTE](https://github.com/sudo-Tiz/LARBUSTE) — minimal dotfiles for any Linux box
+- [nvim](https://github.com/sudo-Tiz/nvim) — Neovim config
